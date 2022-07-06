@@ -22,7 +22,7 @@ const Home = () =>{
 
     return(
         <Layout>
-           <div className="flex flex-col m-auto mt-5 pt-5 w-4/5 bg-orange-200 ">
+           <div className="flex flex-col m-auto mt-5 pt-5 w-4/5 ">
                 <div className="m-auto flex flex-row w-3/5">
                     <input 
                         className='outline-none border border-transparent align-middle h-12 w-full

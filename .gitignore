@@ -4,3 +4,4 @@
 
 #EnviromentVariables
 /backend/.env
+/frontend/.env

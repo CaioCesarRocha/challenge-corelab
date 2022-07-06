@@ -27,4 +27,10 @@ export class CreateVehicleDto {
     @MinLength(7,{message: 'A placa deve ter 7 dígitos'})
     @IsNotEmpty({ message: 'Placa do veículo não informada'})
     plate: string;
+
+    @IsNotEmpty({ message: 'Preço não informado'})
+    price: string
+
+    @MaxLength(60,{message: 'A descrição deve ter 60 dígitos'})
+    description: string
 }

@@ -20,6 +20,12 @@ export class Vehicle {
 
     @Prop({required: true})
     plate: string; 
+
+    @Prop({required: true}) 
+    price: string;
+
+    @Prop({required: true}) 
+    description: string;
 }
 
 
