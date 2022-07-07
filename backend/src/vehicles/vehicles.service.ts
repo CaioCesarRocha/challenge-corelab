@@ -10,7 +10,16 @@ export class VehiclesService {
   constructor(private vehicleRepository: VehicleRepository) {}
 
   async create(vehicle: CreateVehicleDto) {
-    const createVehicle = await this.vehicleRepository.create(vehicle);
+    const newVehicle = {
+      name: vehicle.name.toUpperCase(),
+      brand: vehicle.brand.toUpperCase(),
+      year: vehicle.year as number,
+      color: vehicle.color,
+      price: vehicle.price.toUpperCase(),
+      plate: vehicle.plate.toUpperCase(),
+      description: vehicle.description.toUpperCase()
+    }
+    const createVehicle = await this.vehicleRepository.create(newVehicle);
     return createVehicle;
   }
 
@@ -20,8 +29,8 @@ export class VehiclesService {
   }
 
   async findOne(id: string) {
-    /*const findOne = await this.vehicleRepository.findOne(id);
-    return findOne;*/
+    const vehicle = await this.vehicleRepository.findOne(id);
+    return vehicle;
   }
 
   async findSearch(word: string){
@@ -30,7 +39,16 @@ export class VehiclesService {
   }
 
   async update(id: string, updateVehicle: UpdateVehicleDto) {
-    const updatedVehicle = await this.vehicleRepository.update(id, updateVehicle)
+    const newUpdateVehicle = {
+      name: updateVehicle.name.toUpperCase(),
+      brand: updateVehicle.brand.toUpperCase(),
+      year: updateVehicle.year as number,
+      color: updateVehicle.color,
+      price: updateVehicle.price.toUpperCase(),
+      plate: updateVehicle.plate.toUpperCase(),
+      description: updateVehicle.description.toUpperCase()
+    }
+    const updatedVehicle = await this.vehicleRepository.update(id, newUpdateVehicle)
     return updatedVehicle;
   }
 

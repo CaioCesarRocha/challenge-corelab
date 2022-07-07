@@ -1,4 +1,5 @@
-import NavBar from "./navBar";
+import NavBar from "../navBar/navBar";
+import styles from './layout.module.scss'
 
 
 interface LayoutProps {
@@ -8,7 +9,7 @@ interface LayoutProps {
 const Layout = (props: LayoutProps) =>{
 
     return(
-        <div className="h-screen">
+        <div className={styles.Content} >
             <NavBar/>
             <div>
                 {props.children}

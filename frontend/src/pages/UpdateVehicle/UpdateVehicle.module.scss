@@ -1,0 +1,61 @@
+@import '../../services/break-points.scss';
+
+.Content {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 16px;
+}
+
+.Form{
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    background-color: #a3f7b7;
+    padding: 10px 30px 10px 30px;
+    margin: 0 auto;
+}
+
+
+
+.Form h1{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: #063311;
+
+    @include tablet {
+        font-size: 30px;
+    }
+}
+
+.Form p {
+    margin-top: 5px;
+    padding: 1;
+    font-size: 16px;
+    font-weight: bold;
+    color: #012b0b;
+
+    @include tablet {
+        font-size: 20px;
+    }
+}
+
+.Form select{
+    padding: 6px;
+    width: 19em;
+    border: solid 2px #035717;
+    border-radius: 10px;
+    @include tablet {
+        width: 19rem;
+    }
+}
+
+.TextArea{
+    padding: 8px;
+    width: 18em;
+    border: solid 2px #035717;
+    border-radius: 12px; 
+    @include tablet {
+        width: 18rem;
+    } 
+}

@@ -1,7 +1,8 @@
 import {  ChangeEvent, useState } from "react";
 import {useNavigate} from 'react-router-dom'
 
-import Layout from "../components/layout";
+import Layout from "../components/layout/layout";
+import ButtonBasic from "../components/buttonBasic/buttonBasic";
 import CardItem from "../components/cardItem";
 import * as icon from '../components/icons';
 
@@ -34,7 +35,7 @@ const Home = () =>{
                     />
 
                     <button 
-                        className="h-12 p-2 text-2xl bg-white text-gray-900 bg-emerald-300  
+                        className="h-12 p-2 text-2xl bg-white text-gray-900 bg-emerald-400  
                         hover:bg-emerald-600 hover:text-white rounded-r-full "
                         onClick={() => searchProduct(search)}
                     >
@@ -52,15 +53,12 @@ const Home = () =>{
                         description='Carro usado - 3 anos'
                         plate='agh5489'
                     />
-                </div>               
+                </div>  
 
-                <button
-                    className=" m-auto bg-emerald-300 rounded-full p-3 mt-10 w-72 font-bold text-gray-700
-                    hover:bg-emerald-600 hover:text-white "
+                <ButtonBasic
+                    info="Adicionar"
                     onClick={() => navigate(`newvehicle`)}
-                >
-                    ADICIONAR
-                </button>
+                />             
             </div>
         </Layout>
     );

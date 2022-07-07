@@ -21,11 +21,16 @@ export class VehicleRepository {
         return this.vehicleModel.find()
     }
 
+    async findOne(id: string){
+        return this.vehicleModel.find().where('_id', id)
+    }
+
     async findSearch(word: string){
-        return this.vehicleModel.find().where('name', word)
+        return this.vehicleModel.find().where('brand', word)
     } 
     
     async update(id: string, updateVehicle: UpdateVehicleDto): Promise<Vehicle>{
+        console.log(id, updateVehicle)
         return this.vehicleModel.findByIdAndUpdate(
             { _id: id, },
             { $set: updateVehicle, },
