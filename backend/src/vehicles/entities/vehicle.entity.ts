@@ -21,6 +21,9 @@ export class Vehicle {
     @Prop({required: true})
     plate: string; 
 
+    @Prop({required: true})
+    isFavorite: boolean; 
+
     @Prop({required: true}) 
     price: string;
 

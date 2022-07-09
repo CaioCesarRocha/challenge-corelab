@@ -24,7 +24,7 @@ const NewVehicle = () =>{
                 name: data.name,
                 brand: data.brand,
                 year: data.year,
-                color: data.color,
+                color: data.color || "prata",
                 price: data.price,
                 plate: data.plate,
                 description: data.description || "-"

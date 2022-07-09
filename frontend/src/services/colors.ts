@@ -5,6 +5,6 @@ export const colors =  [
     {color: "Azul", value: "#011f82"}, 
     {color: "Vermelho", value: "#a60707"},
     {color: "Marrom/Bege", value: "#6e5a54"},
-    {color: "Amarelo", value: "#e4f005"}, 
+    {color: "Amarelo", value: "#f3f705"}, 
     
 ]

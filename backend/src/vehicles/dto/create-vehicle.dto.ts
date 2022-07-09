@@ -31,6 +31,10 @@ export class CreateVehicleDto {
     @IsNotEmpty({ message: 'Preço não informado'})
     price: string
 
+    isFavorite: boolean;
+
     @MaxLength(60,{message: 'A descrição deve ter 60 dígitos'})
     description: string
+
+
 }

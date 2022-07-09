@@ -15,7 +15,7 @@ const UpdateVehicle = () =>{
     const params = useParams()
     const [newInitialValues, setNewInitialValues] = useState({
         id: '', name: '', brand: '', year: '', price: "", 
-        color: '', plate: '', description: ''
+        color: '', plate: '', description: '', isFavorite: ''
     })
 
     useEffect(() =>{
@@ -30,6 +30,7 @@ const UpdateVehicle = () =>{
                     brand: response.brand,
                     color: response.color,
                     year: response.year,
+                    isFavorite: response.isFavorite,
                     price: response.price,
                     plate: response.plate,
                     description: response.description
@@ -52,6 +53,7 @@ const UpdateVehicle = () =>{
                 brand: data.brand,
                 year: data.year,
                 color: data.color,
+                isFavorite: newInitialValues.isFavorite,
                 price: data.price,
                 plate: data.plate,
                 description: data.description || "-"

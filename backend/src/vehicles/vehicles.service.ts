@@ -16,8 +16,9 @@ export class VehiclesService {
       year: vehicle.year as number,
       color: vehicle.color,
       price: vehicle.price.toUpperCase(),
+      isFavorite: false,
       plate: vehicle.plate.toUpperCase(),
-      description: vehicle.description.toUpperCase()
+      description: vehicle.description
     }
     const createVehicle = await this.vehicleRepository.create(newVehicle);
     return createVehicle;
@@ -33,10 +34,7 @@ export class VehiclesService {
     return vehicle;
   }
 
-  async findSearch(word: string){
-    const vehicleSearched = await this.vehicleRepository.findSearch(word);
-    return vehicleSearched;
-  }
+ 
 
   async update(id: string, updateVehicle: UpdateVehicleDto) {
     const newUpdateVehicle = {
@@ -44,9 +42,10 @@ export class VehiclesService {
       brand: updateVehicle.brand.toUpperCase(),
       year: updateVehicle.year as number,
       color: updateVehicle.color,
+      isFavorite: updateVehicle.isFavorite,
       price: updateVehicle.price.toUpperCase(),
       plate: updateVehicle.plate.toUpperCase(),
-      description: updateVehicle.description.toUpperCase()
+      description: updateVehicle.description
     }
     const updatedVehicle = await this.vehicleRepository.update(id, newUpdateVehicle)
     return updatedVehicle;
@@ -54,6 +53,9 @@ export class VehiclesService {
 
   async remove(id: string) {
     const removedVehicle = await this.vehicleRepository.remove(id);
-    return removedVehicle;
+    if(removedVehicle.deletedCount === 1){
+      return true
+    }
+    return false
   }
 }

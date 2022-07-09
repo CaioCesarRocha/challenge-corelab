@@ -22,10 +22,6 @@ export class VehiclesController {
     return this.vehiclesService.findOne(id);
   }
 
-  @Get(':word')
-  findSearch(@Param('word') word: string) {
-    return this.vehiclesService.findSearch(word);
-  }
 
 
   @Put(':id')

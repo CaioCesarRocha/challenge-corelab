@@ -10,7 +10,7 @@ const ButtonBasic = (props: ButtonBasicProps) =>{
 
     return(
         <button
-            className={styles.button}
+            className={styles.buttonAdd}
             type="submit"
             onClick={props.onClick}
             

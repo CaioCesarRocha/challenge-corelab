@@ -22,15 +22,14 @@ export class VehicleRepository {
     }
 
     async findOne(id: string){
+        if(id === 'favorites'){
+            return this.vehicleModel.find().where('isFavorite', true);
+        }
         return this.vehicleModel.find().where('_id', id)
     }
 
-    async findSearch(word: string){
-        return this.vehicleModel.find().where('brand', word)
-    } 
     
     async update(id: string, updateVehicle: UpdateVehicleDto): Promise<Vehicle>{
-        console.log(id, updateVehicle)
         return this.vehicleModel.findByIdAndUpdate(
             { _id: id, },
             { $set: updateVehicle, },
