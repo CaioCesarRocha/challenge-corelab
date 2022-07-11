@@ -153,7 +153,7 @@ const Filter = () =>{
                                 </div>
                                 <div className={styles.Column}> 
                                     <InputBasic
-                                        info="Preço Mínimo:"
+                                        info="Preço Máximo:"
                                         name="maxP"
                                         placeholder="Preço máximo do veículo"
                                         type="text"

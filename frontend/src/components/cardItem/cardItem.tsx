@@ -1,8 +1,4 @@
-import {useNavigate} from 'react-router-dom';
-import { useState } from 'react';
-
 import * as icon from '../icons/index';
-import * as handleVehicles from '../../repository/vehicles.reposistory'
 import styles from './cardItem.module.scss';
 
 
@@ -21,7 +17,6 @@ interface CardItemProps {
 }
 
 const CardItem = (props: CardItemProps) =>{  
-    const navigate = useNavigate();
 
     return(
         <>             
