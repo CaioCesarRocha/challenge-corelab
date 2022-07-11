@@ -56,10 +56,12 @@
 
 - Via docker - Basta rodar o comando docker-compose up  na pasta raiz do projeto
 
-- Caso não tenha docker, é necessário entrar nas pastas backend e front e rodar o comando npm install, seguido de npm run start:dev para o back, e npm start para o front. OBS: Rode o backend antes do frontend para evitar conflitos;
+- Caso não tenha docker, é necessário entrar nas pastas backend e front e rodar o comando npm install, seguido de npm run start:dev para o back, e npm start para o front. OBS: Rode o backend antes do frontend para evitar conflitos
+
+- Após rodar o back e o front, a aplicação pode ser acessada pelo http://localhost:3001/ no navegador    
 
 #### ATENÇÃO!!
 
 - Necessário criar as suas variáveis de ambiente no arquivo .env, conforme exemplificado no arquivo env.example no Backend;
 
-- As variáveis de ambientes referem-se a sua string de conexão do Atlas (pode ser criado no site do mongodbAtlas), e a o nome da tabela que será gerada no banco;
+- As variáveis de ambientes referem-se a sua string de conexão do Atlas (pode ser criado no site do mongodbAtlas), e o nome do database utilizado no banco;
