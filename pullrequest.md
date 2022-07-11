@@ -1,23 +1,8 @@
-## Seja bem vindo! Meu nome é Caio Rocha!
+## Challenge-corelab
 
-
-🥅 - Hoje trabalho com Full Stack (JS) 
-
-📈 - Estudo ReactJS, NodeJS, TypeScript, entre outros!
-
-<div align="center">
-  <a href="https://github.com/CaioCesarRocha">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=CaioCesarRocha&show_icons=true&theme=algolia&include_all_commits=true&count_private=true"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=CaioCesarRocha&layout=compact&langs_count=7&theme=algolia"/>
-</div>
-
-## Projeto Challenge-corelab
-
-### Descrição
+### Descrição do projeto
 
 - Foi desenvolvido um CRUD para cadastro de veículos, além das funcionalidades filtro e favoritos;
-
-
 
 ### Tenolocias utilizadas 
 
@@ -61,5 +46,4 @@
 #### ATENÇÃO!!
 
 - Necessário criar as suas variáveis de ambiente no arquivo .env, conforme exemplificado no arquivo env.example no Backend;
-
-- As variáveis de ambientes referem-se a sua string de conexão do Atlas (pode ser criado no site do mongodbAtlas), e a o nome da tabela que será gerada no banco;
+- As variáveis de ambientes referem-se a sua string de conexão do Atlas (pode ser criado aqui no site domongoDbAtlas), e a o nome da tabela que será gerada no banco;
