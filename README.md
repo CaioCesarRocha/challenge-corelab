@@ -56,9 +56,7 @@
 
 - Via docker - Basta rodar o comando docker-compose up  na pasta raiz do projeto
 
-- Caso não tenha docker, é necessário entrar nas pastas backend e front e rodar o comando npm install, seguido de npm run start:dev para o back, e npm start para o front. OBS: Rode o backend antes do frontend para evitar conflitos
-
-- Após rodar o back e o front, a aplicação pode ser acessada pelo http://localhost:3001/ no navegador    
+- Caso não tenha docker, é necessário entrar nas pastas backend e front e rodar o comando npm install, seguido de npm run start:dev para o back, e npm start para o front. OBS: Rode o backend antes do frontend para evitar conflitos  
 
 #### ATENÇÃO!!
 
