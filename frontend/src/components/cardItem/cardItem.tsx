@@ -15,8 +15,9 @@ interface CardItemProps {
     plate: string,
     price: string,
     description: string,
-    onFavorite: () => void;
-    onDelete: () => void;
+    onEdit?: () => void;
+    onFavorite?: () => void;
+    onDelete?: () => void;
 }
 
 const CardItem = (props: CardItemProps) =>{  
@@ -28,7 +29,7 @@ const CardItem = (props: CardItemProps) =>{
                 <div className={styles.ContentIcons}>
                     <i 
                         style={{color: props.color}}
-                        onClick={() => navigate(`updatevehicle/${props.id}`)}
+                        onClick={ props.onEdit}
                     > 
                         {icon.edit} 
                     </i>

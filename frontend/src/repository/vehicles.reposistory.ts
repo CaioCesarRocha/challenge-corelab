@@ -5,9 +5,11 @@ interface vehicle{
     brand: string,
     year: number | string,
     color: string,
-    price: string,
-    plate: string,
-    description?: string
+    price?: string,
+    plate?: string,
+    description?: string,
+    minP?: string,
+    maxP?: string
 }
 
 export var initialValues = { name: '', brand: '', year: '', price: "", 
@@ -15,14 +17,29 @@ color: '', plate: '', description: ''};
 
 
 export const getVehicles = async() =>{
-    const response = await api.get('/vehicles');
+    const response = await api.get('/vehicles/?search=all');
     
+    return response;
+}
+
+export const searchVehicles = async(search: string) =>{
+    const response = await api.get(`/vehicles/?search=${search}`);
+    
+    return response;
+}
+
+export const filterVehicles = async(v: vehicle)=>{
+    var color = v.color.substring(1);
+    color = '%23' + color;
+    
+    const response = await api.get(`http://localhost:3000/vehicles/findByfilter/?filter=${v.name}&brand=${v.brand}&year=${v.year}&color=${color}&minP=${v.minP}&maxP=${v.maxP}`);
+    //const response = await api.get(`http://localhost:3000/vehicles/findByfilter/?filter=uno&brand=fiat&year=2011&color=%23080808&minP=13000&maxP=17000`);   
     return response;
 }
 
 export const createVehicle = async(vehicle: vehicle) =>{
 
-    const response = await api.post('/vehicles', vehicle);
+    const response = await api.post('/vehicles', vehicle); 
 
     return response.data.name
 }
@@ -34,9 +51,6 @@ export const updateVehicle = async(id: string, vehicle: vehicle) =>{
     return response
 }
 
-export const addFavorite = async(id: string) =>{
-
-}
 
 export const getFavorites = async()=>{
     const id='favorites'

@@ -14,39 +14,54 @@ const Home = () =>{
     const navigate = useNavigate();
     const [renderRemoveAlert, setRenderRemoveAlert] = useState<boolean>(false)
     const [renderFavorite, setRenderFavorite] = useState<boolean>(false);
+    const [renderNoVehicle, setRenderNoVehicle] = useState<boolean>(false);
     const [search, setSearch] = useState<string>('')
     const [vehicles, setVehicles] = useState<any[]>([])
 
     useEffect(() =>{
         async function getVehicles(){
             const response = await handleVehicle.getVehicles();
-            console.log(response.data)
+            
             setVehicles(response.data)
         }
-
         getVehicles()
     }, [])
 
+    //remove o veículo quando clicado na lixeira
     async function removeVehicle(id: string){
-        const response = await handleVehicle.deleteVehicle(id)
+        const response = await handleVehicle.deleteVehicle(id);
 
-        if(response.data === true) setRenderRemoveAlert(true)     
+        if(response.data === true) {
+            const response = await handleVehicle.getVehicles(); 
+            console.log('res', response.data)     
+            setVehicles(response.data)
+            setRenderRemoveAlert(true);   
+        }
+        else{ alert('Não foi possível concluir esta operação') }    
     }
 
+    //adiciona veiculo aos favoritos quando clicado no coração
     async function addFavorite(id: string, vehicle:any) {
         const newVehicle ={...vehicle, isFavorite: true }
 
         await handleVehicle.updateVehicle(id, newVehicle);
 
-        setRenderFavorite(true)
+        setRenderFavorite(true);
     }
+
+    //faz a pesquisa dos produtos
+    async function searchProduct(search: string){
+        setRenderNoVehicle(false)
+        const response = await handleVehicle.searchVehicles(search);
+        
+        if(response.data.length === 0) setRenderNoVehicle(true);
+      
+        setVehicles(response.data);
+    }
+
 
     const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value)
-    }
-
-    function searchProduct(search: string){
-
+        setSearch(e.target.value);
     }
 
 
@@ -64,27 +79,39 @@ const Home = () =>{
                     <button onClick={() => searchProduct(search)}>
                         <i>{icon.search}</i>
                     </button>
+
+                    <i onClick={() => navigate(`filter`)} className={styles.Options}>
+                        {icon.filter}
+                    </i>
                 </div>
+
+                {renderNoVehicle ? 
+                    <AlertItem
+                        info={`Nenhum veículo encontrado.`}
+                        color={'#2196F3'}
+                        onClick={() => setRenderNoVehicle(false)}
+                    />
+                :   null
+                }
 
                 {renderFavorite ? 
                     <AlertItem
                         info={`Veículo adicionado aos favoritos.`}
                         color={'#04AA6D'}
                         onClick={() => setRenderFavorite(false)}
-                />
+                    />
                 :   null
                 }
 
-            {renderRemoveAlert ? 
-                <AlertItem
-                    info={`Veículo excluído com sucesso.`}
-                    color={'#f44336'}
-                    onClick={() => setRenderRemoveAlert(false)}
-                />
-            :   null
-            }
-           
-
+                {renderRemoveAlert ? 
+                    <AlertItem
+                        info={`Veículo excluído com sucesso.`}
+                        color={'#f44336'}
+                        onClick={() => setRenderRemoveAlert(false)}
+                    />
+                :   null
+                }
+            
                 <div className={styles.ContentCard}>
                     {vehicles.map((vehicle)=>(
                         <CardItem
@@ -94,11 +121,12 @@ const Home = () =>{
                             brand={vehicle.brand}
                             color={vehicle.color}
                             price= {vehicle.price}
-                            year= {vehicle.year}
+                            year={vehicle.year}
                             description={vehicle.description}
                             plate={vehicle.plate}
                             onFavorite={() => addFavorite(vehicle._id, vehicle)}
                             onDelete={() => removeVehicle(vehicle._id)}
+                            onEdit={() => navigate(`updatevehicle/${vehicle._id}`)}
                         />
                     ))}
                 </div>  

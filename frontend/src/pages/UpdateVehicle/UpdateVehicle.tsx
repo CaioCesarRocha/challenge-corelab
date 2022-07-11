@@ -1,18 +1,19 @@
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import Layout from "../../components/layout/layout";
 import ButtonBasic from "../../components/buttonBasic/buttonBasic";
 import InputBasic from "../../components/inputBasic/inputBasic";
 import {colors} from "../../services/colors";
 import styles from './UpdateVehicle.module.scss';
-import ErrorForm from '../../components/errorForm';
+import ErrorForm from '../../components/errorForm/errorForm';
 import * as validationForm from '../../services/validationForm';
 import * as handleVehicle from '../../repository/vehicles.reposistory';
 
 const UpdateVehicle = () =>{
-    const params = useParams()
+    const params = useParams();
+    const navigate = useNavigate();
     const [newInitialValues, setNewInitialValues] = useState({
         id: '', name: '', brand: '', year: '', price: "", 
         color: '', plate: '', description: '', isFavorite: ''
@@ -59,8 +60,10 @@ const UpdateVehicle = () =>{
                 description: data.description || "-"
             }
             const response = await handleVehicle.updateVehicle(newInitialValues.id, updateVehicle);    
-            //formik.resetForm();
-            alert(`Veículo ${response.data.name} alterado com sucesso!`);
+            
+            await alert(`Veículo ${response.data.name} alterado com sucesso!`);
+            formik.resetForm();
+            navigate('/')
         }
     });
 

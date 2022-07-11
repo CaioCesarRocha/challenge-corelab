@@ -16,7 +16,7 @@ export class Vehicle {
     color: string; 
 
     @Prop({required: true}) 
-    year: number;
+    year: string;
 
     @Prop({required: true})
     plate: string; 

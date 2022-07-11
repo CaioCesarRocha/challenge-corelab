@@ -20,7 +20,7 @@ export class CreateVehicleDto {
 
     @MaxLength(4, { message: 'O ano do veículo deve ter no máximo 4 números'})
     @IsNotEmpty({ message: 'Ano do veículo não informado'})
-    year: number | string;
+    year: string;
 
 
     @MaxLength(7,{message: 'A placa deve ter 7 dígitos'})

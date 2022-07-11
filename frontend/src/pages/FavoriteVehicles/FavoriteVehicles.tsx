@@ -1,4 +1,5 @@
 import {  useEffect, useState } from "react";
+import {useNavigate, Link} from 'react-router-dom'
 
 import Layout from "../../components/layout/layout";
 import styles from './FavoriteVehicles.module.scss';
@@ -7,6 +8,7 @@ import * as handleVehicle from '../../repository/vehicles.reposistory';
 import AlertItem from '../../components/alert/alert'
 
 const Favorites = () =>{
+    const navigate = useNavigate();
     const [renderRemoveAlert, setRenderRemoveAlert] = useState<boolean>(false)
     const [renderFavorite, setRenderFavorite] = useState<boolean>(false);
     const [vehicles, setVehicles] = useState<any[]>([])
@@ -14,7 +16,6 @@ const Favorites = () =>{
     useEffect(() =>{
         async function getVehicles(){
             const response = await handleVehicle.getFavorites();
-            console.log(response)
             setVehicles(response.data)
         }
 
@@ -29,8 +30,10 @@ const Favorites = () =>{
 
     async function addFavorite(id: string, vehicle:any) {
         const newVehicle ={...vehicle, isFavorite: false}
-
         await handleVehicle.updateVehicle(id, newVehicle);
+
+        const response = await handleVehicle.getFavorites();
+        setVehicles(response.data);
 
         setRenderFavorite(true)
     }
@@ -51,16 +54,15 @@ const Favorites = () =>{
                 :   null
                 }
 
-            {renderRemoveAlert ? 
-                <AlertItem
-                    info={`Veículo excluído com sucesso.`}
-                    color={'#f44336'}           
-                    onClick={() => setRenderRemoveAlert(false)}
-                />
-            :   null
-            }
+                {renderRemoveAlert ? 
+                    <AlertItem
+                        info={`Veículo excluído com sucesso.`}
+                        color={'#f44336'}           
+                        onClick={() => setRenderRemoveAlert(false)}
+                    />
+                :   null
+                }
            
-
                 <div className={styles.ContentCard}>
                     {vehicles.map((vehicle)=>(
                         <CardItem
@@ -75,6 +77,7 @@ const Favorites = () =>{
                             plate={vehicle.plate}
                             onFavorite={() => addFavorite(vehicle._id, vehicle)}
                             onDelete={() => removeVehicle(vehicle._id)}
+                            onEdit={() => navigate(`../updatevehicle/${vehicle._id}`)}
                         />
                     ))}
                 </div>              

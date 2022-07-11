@@ -13,7 +13,7 @@ export class VehiclesService {
     const newVehicle = {
       name: vehicle.name.toUpperCase(),
       brand: vehicle.brand.toUpperCase(),
-      year: vehicle.year as number,
+      year: vehicle.year,
       color: vehicle.color,
       price: vehicle.price.toUpperCase(),
       isFavorite: false,
@@ -24,10 +24,22 @@ export class VehiclesService {
     return createVehicle;
   }
 
-  async findAll() {
-    const allVehicles = await this.vehicleRepository.findAll();
-    return allVehicles;
+  async findBySearch(search: string){
+    const vehicles = await this.vehicleRepository.findBySearch(search);
+    return vehicles;
   }
+
+
+  async findByFilter(name: string, brand: string, year: string, color: string, minP: string, maxP: string){
+    const newName = name.toUpperCase();
+    const newBrand = brand.toUpperCase();
+
+    const vehicles = await this.vehicleRepository.findByFilter(newName, newBrand, year, color, minP, maxP);
+    
+    return vehicles;
+  }
+
+
 
   async findOne(id: string) {
     const vehicle = await this.vehicleRepository.findOne(id);
@@ -35,12 +47,11 @@ export class VehiclesService {
   }
 
  
-
   async update(id: string, updateVehicle: UpdateVehicleDto) {
     const newUpdateVehicle = {
       name: updateVehicle.name.toUpperCase(),
       brand: updateVehicle.brand.toUpperCase(),
-      year: updateVehicle.year as number,
+      year: updateVehicle.year,
       color: updateVehicle.color,
       isFavorite: updateVehicle.isFavorite,
       price: updateVehicle.price.toUpperCase(),
@@ -53,9 +64,8 @@ export class VehiclesService {
 
   async remove(id: string) {
     const removedVehicle = await this.vehicleRepository.remove(id);
-    if(removedVehicle.deletedCount === 1){
-      return true
-    }
-    return false
+    
+    if(removedVehicle.deletedCount === 1) return true
+    else return false
   }
 }

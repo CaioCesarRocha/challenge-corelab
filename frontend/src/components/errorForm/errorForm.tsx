@@ -1,3 +1,5 @@
+import styles from './errorForm.module.scss';
+
 interface ErrorFormProps {
     message: string;
 }
@@ -5,7 +7,7 @@ interface ErrorFormProps {
 const ErrorForm = (props: ErrorFormProps) =>{
 
     return(
-        <p className="font-bold text-sm text-red-700">
+        <p className={styles.Content}>
             {props.message}
         </p>
     )

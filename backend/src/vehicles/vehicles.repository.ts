@@ -17,15 +17,49 @@ export class VehicleRepository {
         return await newVehicle.save();
     }
 
-    async findAll(){
-        return this.vehicleModel.find()
+
+    async findBySearch(search: string){
+        if(search === 'all' || search === '') return this.vehicleModel.find()
+     
+        var word = search.toUpperCase();   
+        
+        return this.vehicleModel.find({
+            $or: [
+                {'name': word},
+                {'brand': word},
+                {'year': word},
+                {'price': word},
+                {'color': word},
+                {'plate': word},
+            ]
+        })
     }
+
+    async findByFilter(name: string, brand: string, year: string, color: string, minP: string, maxP: string){
+       
+       return this.vehicleModel.find({
+            $and: [
+                {'name': name},
+                {'brand': brand},
+                {'year': year},
+                {'color': color},
+                {'price': {$gt: minP}},
+                {'price': {$lt: maxP}}
+            ]
+        })
+    }
+
 
     async findOne(id: string){
         if(id === 'favorites'){
             return this.vehicleModel.find().where('isFavorite', true);
         }
-        return this.vehicleModel.find().where('_id', id)
+
+        try{        
+            return this.vehicleModel.find().where('_id', id);         
+        }catch(err){
+            return false;
+        }    
     }
 
     

@@ -4,7 +4,7 @@ import Layout from "../../components/layout/layout";
 import ButtonBasic from "../../components/buttonBasic/buttonBasic";
 import InputBasic from "../../components/inputBasic/inputBasic";
 import {colors} from "../../services/colors"
-import ErrorForm from '../../components/errorForm';
+import ErrorForm from '../../components/errorForm/errorForm';
 import styles from './NewVehicle.module.scss';
 import * as handleVehicle from '../../repository/vehicles.reposistory'
 import * as validationForm from "../../services/validationForm"
@@ -86,7 +86,7 @@ const NewVehicle = () =>{
                     {formik.errors.price && formik.touched.price && <ErrorForm message={formik.errors.price}/>}
                         
 
-                    <p> Cor: </p>
+                    <p className={styles.nameField}> Cor: </p>
                     <select name="color" onChange={formik.handleChange}>
                         {colors.map((color, key) =>(                            
                             <option key={key} value={color.value}> 
@@ -105,7 +105,7 @@ const NewVehicle = () =>{
                     />
                     {formik.errors.plate && formik.touched.plate && <ErrorForm message={formik.errors.plate}/>}
 
-                    <p> Descrição: </p>
+                    <p className={styles.nameField}> Descrição: </p>
                     <textarea className={styles.TextArea} 
                         name="description"
                         placeholder="Descrição do veículo"
