@@ -1,15 +1,16 @@
+$color-default: white;
+
 .Content{
     padding: 16px;
-    color: #fff;
+    color: #{$color-default};
     margin-top: 20px;
     width: 90%;
     border-radius: 16px;
 }
 
-//backgroundColor: props.color, padding: 16, color: '#fff', marginTop:20, width:'30%'
 .CloseBtn{
     margin-left: 15px;
-    color: white;
+    color: #{$color-default};
     font-weight: bold;
     float: right;
     font-size: 22px;

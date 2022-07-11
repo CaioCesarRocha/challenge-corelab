@@ -1,5 +1,8 @@
 @import '../../services/break-points.scss';
 
+$color-default: #063311;
+$color-border: #035717;
+
 .Content {
     display: flex;
     margin: 0 auto;
@@ -21,7 +24,7 @@
     text-align: center;
     font-size: 22px;
     font-weight: bold;
-    color: #063311;
+    color: #{$color-default};
 
     @include tablet {
         font-size: 30px;
@@ -33,7 +36,7 @@
     padding: 1;
     font-size: 14px;
     font-weight: bold;
-    color: #012b0b;
+    color: #{$color-default};
 
     @include tablet {
         font-size: 16px;
@@ -43,7 +46,7 @@
 .Form select{
     padding: 6px;
     width: 19em;
-    border: solid 2px #035717;
+    border: solid 2px #{$color-border};
     border-radius: 10px;
     @include tablet {
         width: 19rem;
@@ -53,7 +56,7 @@
 .TextArea{
     padding: 8px;
     width: 18em;
-    border: solid 2px #035717;
+    border: solid 2px #{$color-border};
     border-radius: 12px; 
     @include tablet {
         width: 18rem;

@@ -11,11 +11,13 @@ export class VehiclesController {
   create(@Body() createVehicleDto: CreateVehicleDto) {
     return this.vehiclesService.create(createVehicleDto);
   }
+  
 
   @Get()
   async findBySearch(@Query('search') search:string) {
     return this.vehiclesService.findBySearch(search);
   }
+
 
   @Get('findByFilter')
   async findByFilter(
@@ -32,11 +34,11 @@ export class VehiclesController {
   }
 
 
-
   @Put(':id')
   update(@Param('id') id: string, @Body() updateVehicle: UpdateVehicleDto) {
     return this.vehiclesService.update(id, updateVehicle);
   }
+
 
   @Delete(':id')
   remove(@Param('id') id: string) {

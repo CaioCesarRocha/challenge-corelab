@@ -1,8 +1,7 @@
 import styles from './buttonBasic.module.scss'
 
 interface ButtonBasicProps {
-    info: string,
-    
+    info: string,  
     onClick?: () => void;
 }
 
@@ -12,13 +11,11 @@ const ButtonBasic = (props: ButtonBasicProps) =>{
         <button
             className={styles.buttonAdd}
             type="submit"
-            onClick={props.onClick}
-            
+            onClick={props.onClick}           
         >
             {props.info}
         </button>
-    )
-    
+    )  
 }
 
 export default ButtonBasic;

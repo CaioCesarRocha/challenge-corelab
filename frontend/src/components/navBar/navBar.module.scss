@@ -1,14 +1,15 @@
 @import '../../services/break-points.scss';
 
+$color-default: #fff;
+
 header{
-    color: #fff;
+    color: #{$color-default};
     background-color: #8d3ef6;
     display: flex;
     flex-direction: row;
     width: 100%;
     align-items: center;
-    justify-content: space-between;
-   
+    justify-content: space-between;  
 }
 
 header a img {
@@ -20,7 +21,7 @@ header a {
     font-weight: bold;
     font-size: 23px;
     font-style: italic;
-    color: white;
+    color: #{$color-default};
     text-decoration: none;
     &:hover{
         color: #7c807d
@@ -29,15 +30,14 @@ header a {
 
 .ContentOptions{
     display: flex;
-   width: 12%;
+    width: 12%;
 
     @include tablet {
         width: 8%;
-        //border-radius: 20px 20px 20px 20px;
     }
+
     @include laptop {
         width: 6%;
-       
     }
 }
 
@@ -54,15 +54,7 @@ header i{
 
     &:hover{
         background-color: red;
-        color: white;
-    }
-
-    @include tablet {
-
-    }
-    @include laptop {
-      
-       
+        color: #{$color-default};
     }
 }
 

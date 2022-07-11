@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import { useNavigate } from "react-router-dom";
 
 import Layout from "../../components/layout/layout";
 import ButtonBasic from "../../components/buttonBasic/buttonBasic";
@@ -6,12 +7,12 @@ import InputBasic from "../../components/inputBasic/inputBasic";
 import {colors} from "../../services/colors"
 import ErrorForm from '../../components/errorForm/errorForm';
 import styles from './NewVehicle.module.scss';
-import * as handleVehicle from '../../repository/vehicles.reposistory'
+import * as servicesVehicle from '../../services/vehicles.service';
 import * as validationForm from "../../services/validationForm"
 
 
 const NewVehicle = () =>{
-
+    const navigate = useNavigate();
     const formik  = useFormik({
         initialValues: validationForm.initialValues,
     
@@ -20,18 +21,11 @@ const NewVehicle = () =>{
         enableReinitialize: true,
 
         onSubmit: async (data) => {
-            const newVehicle = {
-                name: data.name,
-                brand: data.brand,
-                year: data.year,
-                color: data.color || "prata",
-                price: data.price,
-                plate: data.plate,
-                description: data.description || "-"
-            }
-            const response = await handleVehicle.createVehicle(newVehicle);     
+            const response = await servicesVehicle.createVehicle(data)
+    
             formik.resetForm();
             alert(`Veículo ${response} cadastrado com sucesso!`);
+            navigate('/')
         }
     });
 
@@ -42,7 +36,6 @@ const NewVehicle = () =>{
                     className={styles.Form}
                     onSubmit={formik.handleSubmit}
                 >   
-
                     <h1> Cadastro Novo Veículo </h1>
                       
                     <InputBasic
@@ -85,7 +78,6 @@ const NewVehicle = () =>{
                     />
                     {formik.errors.price && formik.touched.price && <ErrorForm message={formik.errors.price}/>}
                         
-
                     <p className={styles.nameField}> Cor: </p>
                     <select name="color" onChange={formik.handleChange}>
                         {colors.map((color, key) =>(                            
@@ -113,7 +105,6 @@ const NewVehicle = () =>{
                         onChange={formik.handleChange}
                     />
          
-
                     <ButtonBasic info="Cadastrar"/>
                 </form>
             </div>

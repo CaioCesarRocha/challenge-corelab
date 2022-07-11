@@ -4,7 +4,7 @@ import {useNavigate, } from 'react-router-dom'
 import Layout from "../../components/layout/layout";
 import styles from './FavoriteVehicles.module.scss';
 import CardItem from "../../components/cardItem/cardItem";
-import * as handleVehicle from '../../repository/vehicles.reposistory';
+import * as serviceVehicle from '../../services/vehicles.service';
 import AlertItem from '../../components/alert/alert'
 
 const Favorites = () =>{
@@ -15,7 +15,7 @@ const Favorites = () =>{
 
     useEffect(() =>{
         async function getVehicles(){
-            const response = await handleVehicle.getFavorites();
+            const response = await serviceVehicle.getFavorites();
             setVehicles(response.data)
         }
 
@@ -23,16 +23,17 @@ const Favorites = () =>{
     }, [])
 
     async function removeVehicle(id: string){
-        const response = await handleVehicle.deleteVehicle(id)
+        
+        const response = await serviceVehicle.deleteVehicle(id)
 
         if(response.data === true) setRenderRemoveAlert(true)     
     }
 
     async function addFavorite(id: string, vehicle:any) {
-        const newVehicle ={...vehicle, isFavorite: false}
-        await handleVehicle.updateVehicle(id, newVehicle);
+        const favorite = false;
+        await serviceVehicle.updateVehicle(id, vehicle, favorite);
 
-        const response = await handleVehicle.getFavorites();
+        const response = await serviceVehicle.getFavorites();
         setVehicles(response.data);
 
         setRenderFavorite(true)
@@ -50,7 +51,7 @@ const Favorites = () =>{
                         info={`Veículo removido dos favoritos.`}
                         color={'#2196F3'}
                         onClick={() => setRenderFavorite(false)}
-                />
+                    />
                 :   null
                 }
 

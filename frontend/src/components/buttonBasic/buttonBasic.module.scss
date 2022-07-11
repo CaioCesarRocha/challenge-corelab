@@ -1,7 +1,10 @@
+$bg-color-default: #1d522a;
+$bg-color-hover: #05751f;
+
 .buttonAdd{
     margin: 0 auto;
-    background-color: #1d522a;
-    border: solid 2px #1d522a;
+    background-color: #{$bg-color-default};
+    border: solid 2px #{$bg-color-default};
     border-radius: 20px;
     padding: 6px;
     margin-top: 35px;
@@ -10,9 +13,11 @@
     font-weight: bold;
     color: #fff;
     cursor: pointer;
+    box-shadow: 5px 5px 5px  black;
+
     &:hover{
-        background-color: #05751f;
-        border: solid 2px #05751f;
-        color: black
+        background-color: #{$bg-color-hover};
+        border: solid 2px #{$bg-color-hover};
+        color: black;
     }
 }

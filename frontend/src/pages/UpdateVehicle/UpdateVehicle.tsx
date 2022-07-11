@@ -9,6 +9,7 @@ import {colors} from "../../services/colors";
 import styles from './UpdateVehicle.module.scss';
 import ErrorForm from '../../components/errorForm/errorForm';
 import * as validationForm from '../../services/validationForm';
+import * as serviceVehicle from '../../services/vehicles.service';
 import * as handleVehicle from '../../repository/vehicles.reposistory';
 
 const UpdateVehicle = () =>{
@@ -49,19 +50,9 @@ const UpdateVehicle = () =>{
         enableReinitialize: true,
 
         onSubmit: async (data) => {
-            const updateVehicle = {
-                name: data.name,
-                brand: data.brand,
-                year: data.year,
-                color: data.color,
-                isFavorite: newInitialValues.isFavorite,
-                price: data.price,
-                plate: data.plate,
-                description: data.description || "-"
-            }
-            const response = await handleVehicle.updateVehicle(newInitialValues.id, updateVehicle);    
+            const response = await serviceVehicle.updateVehicle(newInitialValues.id, data, newInitialValues.isFavorite); 
             
-            await alert(`Veículo ${response.data.name} alterado com sucesso!`);
+            alert(`Veículo ${response.data.name} alterado com sucesso!`);
             formik.resetForm();
             navigate('/')
         }
@@ -145,7 +136,6 @@ const UpdateVehicle = () =>{
                         onChange={formik.handleChange}
                     />
         
-
                     <ButtonBasic info="Enviar" />
                 </form>
             </div>

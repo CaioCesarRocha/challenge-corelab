@@ -6,7 +6,7 @@ import styles from './Home.module.scss';
 import ButtonBasic from "../../components/buttonBasic/buttonBasic";
 import CardItem from "../../components/cardItem/cardItem";
 import * as icon from '../../components/icons';
-import * as handleVehicle from '../../repository/vehicles.reposistory';
+import * as servicesVehicle from '../../services/vehicles.service';
 import AlertItem from '../../components/alert/alert'
 
 
@@ -20,7 +20,7 @@ const Home = () =>{
 
     useEffect(() =>{
         async function getVehicles(){
-            const response = await handleVehicle.getVehicles();
+            const response = await servicesVehicle.getVehicles();
             
             setVehicles(response.data)
         }
@@ -29,11 +29,10 @@ const Home = () =>{
 
     //remove o veículo quando clicado na lixeira
     async function removeVehicle(id: string){
-        const response = await handleVehicle.deleteVehicle(id);
+        const response = await servicesVehicle.deleteVehicle(id);
 
         if(response.data === true) {
-            const response = await handleVehicle.getVehicles(); 
-            console.log('res', response.data)     
+            const response = await servicesVehicle.getVehicles();     
             setVehicles(response.data)
             setRenderRemoveAlert(true);   
         }
@@ -42,17 +41,16 @@ const Home = () =>{
 
     //adiciona veiculo aos favoritos quando clicado no coração
     async function addFavorite(id: string, vehicle:any) {
-        const newVehicle ={...vehicle, isFavorite: true }
-
-        await handleVehicle.updateVehicle(id, newVehicle);
+        const isFavorite = true;
+        await servicesVehicle.updateVehicle(id, vehicle, isFavorite);
 
         setRenderFavorite(true);
     }
 
     //faz a pesquisa dos produtos
-    async function searchProduct(search: string){
+    async function searchVehicle(search: string){
         setRenderNoVehicle(false)
-        const response = await handleVehicle.searchVehicles(search);
+        const response = await servicesVehicle.searchVehicle(search);
         
         if(response.data.length === 0) setRenderNoVehicle(true);
       
@@ -76,7 +74,7 @@ const Home = () =>{
                         onChange={handleSearchChange}        
                     />
 
-                    <button onClick={() => searchProduct(search)}>
+                    <button onClick={() => searchVehicle(search)}>
                         <i>{icon.search}</i>
                     </button>
 

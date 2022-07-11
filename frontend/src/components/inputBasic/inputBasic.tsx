@@ -21,10 +21,8 @@ const InputBasic = (props: InputBasicProps) =>{
                 value={props.value} 
                 onChange={props.onChange}
             />
-        </div>
-      
-    )
-    
+        </div>     
+    )   
 }
 
 export default InputBasic;

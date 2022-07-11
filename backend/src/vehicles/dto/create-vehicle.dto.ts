@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, MaxLength, MinLength } from 'class-validator';
+import { IsNotEmpty, MaxLength, MinLength } from 'class-validator';
 
 
 export class CreateVehicleDto {
@@ -28,13 +28,14 @@ export class CreateVehicleDto {
     @IsNotEmpty({ message: 'Placa do veículo não informada'})
     plate: string;
 
+
     @IsNotEmpty({ message: 'Preço não informado'})
     price: string
 
+
     isFavorite: boolean;
+
 
     @MaxLength(60,{message: 'A descrição deve ter 60 dígitos'})
     description: string
-
-
 }

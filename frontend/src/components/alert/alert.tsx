@@ -1,4 +1,3 @@
-
 import styles from './alert.module.scss'
 
 interface AlertProps {

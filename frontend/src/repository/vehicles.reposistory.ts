@@ -38,14 +38,12 @@ export const filterVehicles = async(v: vehicle)=>{
 }
 
 export const createVehicle = async(vehicle: vehicle) =>{
-
     const response = await api.post('/vehicles', vehicle); 
 
     return response.data.name
 }
 
 export const updateVehicle = async(id: string, vehicle: vehicle) =>{
-
     const response = await api.put(`/vehicles/${id}`, vehicle);
 
     return response

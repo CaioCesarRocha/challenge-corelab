@@ -22,6 +22,7 @@ const CardItem = (props: CardItemProps) =>{
         <>             
            <div style={{backgroundColor: props.color}} className={styles.Content}>
                 <div className={styles.ContentIcons}>
+
                     <i 
                         style={{color: props.color}}
                         onClick={ props.onEdit}

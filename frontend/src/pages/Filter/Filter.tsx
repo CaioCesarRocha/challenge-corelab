@@ -10,13 +10,12 @@ import ErrorForm from '../../components/errorForm/errorForm';
 import CardItem from '../../components/cardItem/cardItem';
 import AlertItem from '../../components/alert/alert';
 import * as validationFilter from '../../services/validationFilter';
-import * as handleVehicle from '../../repository/vehicles.reposistory';
+import * as servicesVehicles from '../../services/vehicles.service';
 
 const Filter = () =>{
     const [renderSearched, setRenderSearched] = useState<boolean>(false)
     const [renderNoVehicle, setRenderNoVehicle] = useState<boolean>(false);
     const [vehicles, setVehicles] = useState<any[]>([])
-
 
 
     const formik  = useFormik({
@@ -27,26 +26,14 @@ const Filter = () =>{
         enableReinitialize: true,
 
         onSubmit: async (data) => {
-            
-            const searchVehicle = {
-                name: data.name,
-                brand: data.brand,
-                year: data.year,
-                color: data.color || "#3d4242",
-                minP: data.minP,
-                maxP: data.maxP           
-            }
-            const response = await handleVehicle.filterVehicles(searchVehicle); 
+            const response = await servicesVehicles.filterVehicle(data)
 
             if(response.data.length === 0){
                 setRenderNoVehicle(true);
-                console.log('res dentro',response)
                 return;
-
             } 
             
-            console.log('res',response)
-            //formik.resetForm();
+            formik.resetForm();
             setVehicles(response.data)
             setRenderSearched(true);        
         }
@@ -69,8 +56,7 @@ const Filter = () =>{
                             plate={vehicle.plate}
                         />
                     ))}
-                </div>  
-                
+                </div>                 
             :
                 <div className={styles.Content} >
                     <form className={styles.Form} 
@@ -100,7 +86,6 @@ const Filter = () =>{
                                     />
                                     {formik.errors.name && formik.touched.name && <ErrorForm message={formik.errors.name}/>}
                                 </div>
-
 
                                 <div className={styles.Column}>   
                                     <InputBasic
@@ -167,10 +152,8 @@ const Filter = () =>{
                             <ButtonBasic info="Iniciar Busca" />
                         </div>
                     </form>               
-                </div>         
-               
-            }
-             
+                </div>                      
+            }            
         </Layout>
     );
 }

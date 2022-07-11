@@ -1,5 +1,6 @@
 @import "../../services/break-points.scss";
 
+$filter: saturate(0) grayscale(1) brightness(.7) contrast(1000%) invert(1);
 
 .Content{
     padding: 5px;
@@ -9,21 +10,18 @@
     margin: 20px 0px 0px 15px;
     flex-direction: column;
     box-shadow: 3px 3px 3px black;
-    //background-color: #e98581;
-    //"p-5 rounded-lg w-64 bg-red-300 flex flex-col"
 }
 
 .ContentIcons{
     display: flex;
     flex-direction: row;
     justify-content: end;
-    //"flex flex-row justify-end"
 }
 
 .ContentIcons i{
     padding: 5px 5px 0px 5px; 
     font-size: 25px;
-    filter: saturate(0) grayscale(1) brightness(.7) contrast(1000%) invert(1);
+    filter: #{$filter};
     cursor: pointer;
 
     &:hover{
@@ -52,7 +50,7 @@
     font-size: 15px;
     margin: 0px;
     padding: 0px;
-    filter: saturate(0) grayscale(1) brightness(.7) contrast(1000%) invert(1);
+    filter: #{$filter};
 }
 
 .InfoName{
@@ -62,7 +60,7 @@
     padding-left: 30px;
     padding-top: 2px; 
     font-size: 16px;
-    filter: saturate(0) grayscale(1) brightness(.7) contrast(1000%) invert(1);
+    filter: #{$filter};
 }
 .Info{
     font-weight: 600;
@@ -71,5 +69,5 @@
     padding-left: 5px;
     padding-top: 2px; 
     font-size: 13px;
-    filter: saturate(0) grayscale(1) brightness(.7) contrast(1000%) invert(1);
+    filter: #{$filter};
 }
